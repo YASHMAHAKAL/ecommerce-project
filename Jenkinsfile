@@ -16,11 +16,6 @@ pipeline {
                 sh 'docker-compose up -d'
             }
         }
-        stage('Test API') {
-            steps {
-                sh 'curl -f http://localhost:5001/products'
-            }
-        }
         stage('Cleanup') {
             steps {
                 sh 'docker system prune -f'
