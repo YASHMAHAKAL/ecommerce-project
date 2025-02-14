@@ -1,0 +1,36 @@
+# Global values
+namespace: ecommerce
+
+# MongoDB Configuration
+mongodb:
+  enabled: true
+  image: mongo:latest
+  containerName: mongo-ecommerce
+  port: 27017
+  storage:
+    size: 1Gi
+  service:
+    type: ClusterIP
+
+# Backend Configuration
+backend:
+  enabled: true
+  image: backend:latest
+  containerName: backend
+  port: 5001
+  replicas: 2
+  service:
+    type: ClusterIP
+  env:
+    MONGO_URI: "mongodb://mongo-ecommerce:27017/ecommerce"
+
+# Frontend Configuration
+frontend:
+  enabled: true
+  image: frontend:latest
+  containerName: frontend
+  port: 80
+  replicas: 2
+  service:
+    type: LoadBalancer
+
