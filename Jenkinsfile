@@ -8,7 +8,8 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/YASHMAHAKAL/ecommerce-project.git'
+                git branch: 'main', credentialsId: 'github-credentials', url: 'https://github.com/YASHMAHAKAL/ecommerce-project.git'
+
             }
         }
         stage('Build & Push Docker Images') {
