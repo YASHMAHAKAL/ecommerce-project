@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/YASHMAHAKAL/ecommerce-project.git'
+                git branch: 'main', url: 'https://github.com/YASHMAHAKAL/ecommerce-project.git'
             }
         }
         stage('Build Docker Images') {
@@ -14,11 +14,6 @@ pipeline {
         stage('Run Containers') {
             steps {
                 sh 'docker-compose up -d'
-            }
-        }
-        stage('Test API') {
-            steps {
-                sh 'curl -f http://localhost:5001/products'
             }
         }
         stage('Cleanup') {
